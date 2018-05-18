@@ -1,23 +1,20 @@
-<ul>
-  <li *ngFor="let task of tasks | async; let i = index" [attr.data-index]='i'>
-    <strong>{{i + 1}} </strong>
-    <span>{{task.description}}</span>
-    <button (click)='edit(task)'>
-      edit
-    </button>
-    <button (click)='deleteTask(task)'>
-      delete
-    </button>
-  </li>
-</ul>
+<mat-toolbar color="primary">
+    <span>What to do When</span>
+  </mat-toolbar>
 
 <form #f='ngForm'>
-  <div>
-    <input [(ngModel)]='myTask' name='myTask' type='text' required>
-  </div>
-  <div>
-    <button [disabled]='!f.valid' (click)='saveTask()'>
-      Save Task
-    </button>
-  </div>
-</form>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Task" [(ngModel)]='myTask' name='myTask' type='text' required>
+      </mat-form-field>
+      <button mat-raised-button color='primary' [disabled]='!f.valid' (click)='saveTask()'>
+        Save Task
+      </button>
+  </form>
+
+<mat-list>
+  <mat-list-item *ngFor="let task of tasks | async">
+    <span>{{task.description}}</span>
+    <button mat-icon-button (click)='edit(task)'><mat-icon>edit</mat-icon></button>
+    <button mat-icon-button (click)='deleteTask(task)'><mat-icon>delete</mat-icon></button>
+  </mat-list-item>
+</mat-list>
