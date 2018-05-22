@@ -4,7 +4,7 @@ import { TaskService } from './services/task.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { config } from './app.config';
-import { Task } from './app.model';
+import { Task, List } from './app.model';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   myTask: string;
   editMode: boolean = false;
   taskToEdit: any = {};
+  lists: Observable<any[]>;
 
   constructor(private db: AngularFirestore, private taskService: TaskService) { }
 
@@ -25,6 +26,15 @@ export class AppComponent implements OnInit {
       return actions.map(a => {
         const data = a.payload.doc.data() as Task;
         const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+
+    this.lists = this.db.collection('lists').snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as List;
+        const id = a.payload.doc.id;
+        console.log('Doc ID:' + id);
         return { id, ...data };
       });
     });
@@ -40,7 +50,8 @@ export class AppComponent implements OnInit {
     saveTask() {
       if (this.myTask !== null) {
          let task = {
-            description: this.myTask
+            description: this.myTask,
+            complete: false
          };
          if (!this.editMode) {
             console.log(task);
@@ -57,5 +68,9 @@ export class AppComponent implements OnInit {
    deleteTask(task) {
     let taskId = task.id;
     this.taskService.deleteTask(taskId);
+ }
+
+ updateTaskStatus(event, index, item) {
+   console.log(event);
  }
 }
