@@ -1,0 +1,12 @@
+<h1 class='mat-display-1'>Create a New List</h1>
+<form #f='ngForm'>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="List Name" [(ngModel)]='myNewList' name='myNewList' type='text' required>
+      </mat-form-field>
+      <button mat-raised-button color='primary' [disabled]='!f.valid' (click)='save()'>
+        Create List
+      </button>
+      <button mat-raised-button (click)='close()'>
+          Cancel
+        </button>
+  </form>

@@ -16,6 +16,7 @@ export class ListsComponent implements OnInit {
 
   ngOnInit() {
     this.listsService.getListsFromAfs().subscribe(data => {
+      this.lists.length = 0;
       this.lists.push(...data);
     });
   }

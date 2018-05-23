@@ -12,13 +12,17 @@ import {
   MatListModule,
   MatToolbarModule,
   MatCheckboxModule,
-  MatCardModule } from '@angular/material';
+  MatCardModule,
+  MatDialogModule
+ } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ListsComponent } from './lists/lists.component';
 import { TaskComponent } from './tasks/task/task.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
+import { NewListComponent } from './lists/new-list/new-list.component';
+import { NewListDialogComponent } from './lists/new-list/new-list-dialog/new-list-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { TaskFormComponent } from './tasks/task-form/task-form.component';
     TasksComponent,
     ListsComponent,
     TaskComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    NewListComponent,
+    NewListDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +46,11 @@ import { TaskFormComponent } from './tasks/task-form/task-form.component';
     MatListModule,
     MatToolbarModule,
     MatCheckboxModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NewListDialogComponent]
 })
 export class AppModule { }

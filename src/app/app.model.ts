@@ -1,12 +1,12 @@
 export interface Task {
-    id: string;
+    id?: string;
     description: string;
     complete?: boolean;
     list?: string;
 }
 
 export interface List {
-    id: string;
+    id?: string;
     name: string;
     activeDate: Date;
     active: boolean;

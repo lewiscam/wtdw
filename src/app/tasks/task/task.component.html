@@ -1,4 +1,4 @@
-<mat-checkbox [checked]='task.complete' (change)='updateTaskStatus($event, index, item)'>
+<mat-checkbox [checked]='task.complete'>
   <span *ngIf='!editMode'>{{task.description}}</span>
 </mat-checkbox>
 <ng-container *ngIf='editMode' >
