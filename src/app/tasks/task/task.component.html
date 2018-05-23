@@ -4,5 +4,7 @@
 <ng-container *ngIf='editMode' >
     <app-task-form [listId]='task.list' [myTask]='task' [editMode]='editMode'></app-task-form>
 </ng-container>
-<button mat-icon-button (click)='edit(task)'><mat-icon>edit</mat-icon></button>
-<button mat-icon-button (click)='deleteTask(task)'><mat-icon>delete</mat-icon></button>
+<div class='task-actions'>
+    <button mat-icon-button (click)='edit(task)'><mat-icon>edit</mat-icon></button>
+    <button mat-icon-button (click)='deleteTask(task)'><mat-icon>delete</mat-icon></button>
+</div>

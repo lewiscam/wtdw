@@ -8,7 +8,7 @@ export interface Task {
 export interface List {
     id?: string;
     name: string;
-    activeDate: Date;
+    activeDate?: Date;
     active: boolean;
     tasks?: Task[];
 }
