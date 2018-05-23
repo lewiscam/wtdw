@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { TaskService } from './services/task.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { config } from './app.config';
-import { Task, List } from './app.model';
 
 @Component({
   selector: 'app-root',
@@ -12,65 +6,10 @@ import { Task, List } from './app.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
-  tasks: Observable<any[]>;
-  myTask: string;
-  editMode: boolean = false;
-  taskToEdit: any = {};
-  lists: Observable<any[]>;
+  title = 'What to do When';
 
-  constructor(private db: AngularFirestore, private taskService: TaskService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.tasks = this.db.collection(config.collection_endpoint).snapshotChanges().map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as Task;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      });
-    });
-
-    this.lists = this.db.collection('lists').snapshotChanges().map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as List;
-        const id = a.payload.doc.id;
-        console.log('Doc ID:' + id);
-        return { id, ...data };
-      });
-    });
     }
-
-    edit(task) {
-      console.log(task);
-      this.taskToEdit = task;
-      this.editMode = true;
-      this.myTask = task.description;
-    }
-
-    saveTask() {
-      if (this.myTask !== null) {
-         let task = {
-            description: this.myTask,
-            complete: false
-         };
-         if (!this.editMode) {
-            console.log(task);
-            this.taskService.addTask(task);
-         } else {
-            let taskId = this.taskToEdit.id;
-            this.taskService.updateTask(taskId, task);
-         }
-         this.editMode = false;
-         this.myTask = '';
-      }
-   }
-
-   deleteTask(task) {
-    let taskId = task.id;
-    this.taskService.deleteTask(taskId);
- }
-
- updateTaskStatus(event, index, item) {
-   console.log(event);
- }
 }

@@ -1,0 +1,6 @@
+<mat-list>
+    <app-task-form [listId]='listId'></app-task-form>
+    <mat-list-item *ngFor="let task of tasks">
+      <app-task [task]='task'></app-task>
+    </mat-list-item>
+  </mat-list>

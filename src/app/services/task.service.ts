@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { config } from './../app.config';
 import { Task } from './../app.model';
 import {
   AngularFirestoreDocument,
@@ -15,20 +14,20 @@ export class TaskService {
   private taskDoc: AngularFirestoreDocument<Task>;
 
   constructor(private db: AngularFirestore) {
-    this.tasks = db.collection<Task>(config.collection_endpoint);
+    this.tasks = db.collection<Task>('tasks');
  }
 
  addTask(task) {
   this.tasks.add(task);
 }
 
-updateTask(id, update) {
-  this.taskDoc = this.db.doc<Task>(`${config.collection_endpoint}/${id}`);
-  this.taskDoc.update(update);
+updateTask(task) {
+  this.taskDoc = this.db.doc<Task>(`tasks/${task.id}`);
+  this.taskDoc.update(task);
 }
 
 deleteTask(id) {
-  this.taskDoc = this.db.doc<Task>(`${config.collection_endpoint}/${id}`);
+  this.taskDoc = this.db.doc<Task>(`tasks/${id}`);
   this.taskDoc.delete();
 }
 

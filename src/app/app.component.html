@@ -2,24 +2,4 @@
     <span>What to do When</span>
   </mat-toolbar>
 
-<mat-card *ngFor='let list of lists | async'>
-  <mat-card-title>{{list.name}}</mat-card-title>
-  <mat-card-subtitle>{{list.activeDate | date}}</mat-card-subtitle>
-  <mat-card-content>
-      <form #f='ngForm'>
-          <mat-form-field class="example-full-width">
-              <input matInput placeholder="Task" [(ngModel)]='myTask' name='myTask' type='text' required>
-            </mat-form-field>
-            <button mat-raised-button color='primary' [disabled]='!f.valid' (click)='saveTask()'>
-              Save Task
-            </button>
-        </form>
-    <mat-list>
-      <mat-list-item *ngFor="let task of tasks | async">
-        <mat-checkbox [checked]='task.complete' (change)='updateTaskStatus($event, index, item)'>{{task.description}}</mat-checkbox>
-        <button mat-icon-button (click)='edit(task)'><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button (click)='deleteTask(task)'><mat-icon>delete</mat-icon></button>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+<app-lists></app-lists>

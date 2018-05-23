@@ -1,0 +1,6 @@
+<mat-card *ngFor='let list of lists'>
+    <mat-card-title>{{list.name}}</mat-card-title>
+    <mat-card-content>
+      <app-tasks [listId]='list.id'></app-tasks>
+    </mat-card-content>
+  </mat-card>

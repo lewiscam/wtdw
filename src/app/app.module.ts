@@ -15,10 +15,18 @@ import {
   MatCardModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ListsComponent } from './lists/lists.component';
+import { TaskComponent } from './tasks/task/task.component';
+import { TaskFormComponent } from './tasks/task-form/task-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TasksComponent,
+    ListsComponent,
+    TaskComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,

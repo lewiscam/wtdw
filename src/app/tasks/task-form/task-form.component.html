@@ -1,0 +1,8 @@
+<form #f='ngForm'>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Task" [(ngModel)]='myTask.description' name='myTask' type='text' required>
+      </mat-form-field>
+      <button mat-raised-button color='primary' [disabled]='!f.valid' (click)='saveTask()'>
+        Save Task
+      </button>
+  </form>
