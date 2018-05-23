@@ -1,0 +1,21 @@
+<mat-card>
+    <div *ngIf='auth.user | async; then authenticated else guest'></div>
+    <ng-template #guest>
+        <mat-card-title>Hey, Guest</mat-card-title>
+        <mat-card-content>
+            <p>Sign in to get started</p>
+            <button mat-raised-button (click)='auth.googleLogin()'>Login with Google</button>
+        </mat-card-content>
+      </ng-template>
+      
+      <ng-template #authenticated>
+          <ng-container *ngIf='auth.user | async as user'>
+            <mat-card-title>Hey, {{user.displayName}}</mat-card-title>
+            <mat-card-content>
+                <img [src]="user.photoUrl" />
+                <p>user id: {{user.uid}}</p>
+                <button mat-raised-button (click)='auth.logout()'>Log Out</button>
+            </mat-card-content>
+          </ng-container>
+      </ng-template>
+</mat-card>

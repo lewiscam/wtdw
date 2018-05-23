@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
@@ -16,6 +17,8 @@ import {
   MatDialogModule
  } from '@angular/material';
 
+ import { CoreModule } from './core/core.module';
+
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ListsComponent } from './lists/lists.component';
@@ -23,6 +26,11 @@ import { TaskComponent } from './tasks/task/task.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
 import { NewListComponent } from './lists/new-list/new-list.component';
 import { NewListDialogComponent } from './lists/new-list/new-list-dialog/new-list-dialog.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
+export const routes: Routes = [
+  { path: '', component: AppComponent }
+];
 
 @NgModule({
   declarations: [
@@ -32,11 +40,14 @@ import { NewListDialogComponent } from './lists/new-list/new-list-dialog/new-lis
     TaskComponent,
     TaskFormComponent,
     NewListComponent,
-    NewListDialogComponent
+    NewListDialogComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    CoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     FormsModule,
