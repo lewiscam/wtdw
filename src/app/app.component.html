@@ -11,7 +11,7 @@
 
   <div *ngIf='auth.user | async; then authenticated else guest'></div>
     <ng-template #guest>
-        <button mat-button (click)='auth.googleLogin()'>Login</button>
+        <a mat-button routerLink='profile'>Login</a>
       </ng-template>
       
       <ng-template #authenticated>

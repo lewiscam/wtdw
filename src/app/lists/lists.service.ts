@@ -13,7 +13,7 @@ export class ListsService {
   constructor(private db: AngularFirestore) {
    }
 
-  getListsFromAfs(user?: User): Observable<any> {
+  getListsFromAfs(user: User): Observable<any> {
     return this.db.collection('lists', ref => ref.where('user', '==', user.uid)).snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as List;

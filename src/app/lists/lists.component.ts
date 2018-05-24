@@ -17,6 +17,10 @@ export class ListsComponent implements OnInit {
   constructor(private listsService: ListsService, private auth: AuthService) { }
 
   ngOnInit() {
+    this.getLists();
+  }
+
+  getLists() {
     this.auth.user.subscribe(user => {
       this.listsService.getListsFromAfs(user).subscribe(data => {
         this.lists.length = 0;
@@ -24,5 +28,4 @@ export class ListsComponent implements OnInit {
       });
     });
   }
-
 }
