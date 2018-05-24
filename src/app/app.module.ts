@@ -14,8 +14,10 @@ import {
   MatToolbarModule,
   MatCheckboxModule,
   MatCardModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule
  } from '@angular/material';
+ import { FlexLayoutModule } from '@angular/flex-layout';
 
  import { CoreModule } from './core/core.module';
 
@@ -62,7 +64,9 @@ export const routes: Routes = [
     MatToolbarModule,
     MatCheckboxModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,15 +1,15 @@
-<mat-toolbar color="primary" class='mat-elevation-z6'>
-    <span>What to do When</span>
+<mat-toolbar color="primary">
 
-    <nav>
-        <a mat-button routerLink='lists'>Lists</a>
-        <a mat-button routerLink='profile'>Profile</a>
-    </nav>
-
-    <!-- This fills the remaining space of the current row -->
-  <span class="example-fill-remaining-space"></span>
-
-  <div *ngIf='auth.user | async; then authenticated else guest'></div>
+        <button mat-button routerLink="/">
+        <mat-icon>home</mat-icon> 
+            {{title}}</button>
+    
+        <!-- This fills the remaining space of the current row -->
+        <span class="fill-remaining-space"></span>
+        <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+            <button mat-button routerLink="/lists">Lists</button>
+            <button mat-button routerLink="/profile">Profile</button>
+            <div *ngIf='auth.user | async; then authenticated else guest'></div>
     <ng-template #guest>
         <a mat-button routerLink='profile'>Login</a>
       </ng-template>
@@ -19,6 +19,26 @@
             <button mat-button (click)='auth.logout()'>Logout</button>
             </ng-container>
       </ng-template>
-  </mat-toolbar>
+        </div>
+        <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+         <mat-icon>menu</mat-icon>
+        </button>
+    
+    </mat-toolbar>
+    <mat-menu x-position="before" #menu="matMenu">
+        <button mat-menu-item routerLink="/lists">Lists</button>
+        <button mat-menu-item routerLink="/profile">Profile</button>
+        <div *ngIf='auth.user | async; then authenticated else guest'></div>
+    <ng-template #guest>
+        <a mat-button routerLink='profile'>Login</a>
+      </ng-template>
+      
+      <ng-template #authenticated>
+          <ng-container *ngIf='auth.user | async as user'>
+            <button mat-button (click)='auth.logout()'>Logout</button>
+            </ng-container>
+      </ng-template>
+        <!--<button mat-menu-item>Help</button>-->
+    </mat-menu>
 
   <router-outlet></router-outlet>
