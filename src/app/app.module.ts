@@ -27,9 +27,10 @@ import { TaskFormComponent } from './tasks/task-form/task-form.component';
 import { NewListComponent } from './lists/new-list/new-list.component';
 import { NewListDialogComponent } from './lists/new-list/new-list-dialog/new-list-dialog.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  { path: '', component: UserProfileComponent },
+  { path: '', component: HomeComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'lists', component: ListsComponent }
 ];
@@ -43,7 +44,8 @@ export const routes: Routes = [
     TaskFormComponent,
     NewListComponent,
     NewListDialogComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
