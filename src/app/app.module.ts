@@ -29,7 +29,8 @@ import { NewListDialogComponent } from './lists/new-list/new-list-dialog/new-lis
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent }
+  { path: '', component: UserProfileComponent },
+  { path: 'lists', component: ListsComponent }
 ];
 
 @NgModule({
