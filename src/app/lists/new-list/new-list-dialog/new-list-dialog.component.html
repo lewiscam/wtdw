@@ -4,7 +4,7 @@
         <input matInput placeholder="List Name" [(ngModel)]='myNewList' name='myNewList' type='text' required>
       </mat-form-field>
       <div class='dialog-actions'>
-          <button class='dialog-button' mat-raised-button color='primary' [disabled]='!f.valid' (click)='save()'>
+          <button class='dialog-button' mat-raised-button color='primary' (click)='save()'>
               Create List
             </button>
             <button class='dialog-button' mat-raised-button (click)='close()'>

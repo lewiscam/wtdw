@@ -35,6 +35,7 @@ export class TaskFormComponent implements OnInit {
           this.taskService.updateTask(task);
        }
        this.editMode = false;
+       this.myTask.description = '';
     }
  }
 
