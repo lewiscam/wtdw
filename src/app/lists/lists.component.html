@@ -1,8 +1,14 @@
-<mat-card *ngFor='let list of lists'>
-    <mat-card-title>{{list.name}}</mat-card-title>
-    <mat-card-content>
-      <app-tasks [listId]='list.id'></app-tasks>
-    </mat-card-content>
-  </mat-card>
-
-  <app-new-list></app-new-list>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-xl-3 my-2" *ngFor='let list of lists'>
+        <mat-card>
+            <mat-card-title>{{list.name}}</mat-card-title>
+            <mat-card-content>
+              <app-tasks [listId]='list.id'></app-tasks>
+            </mat-card-content>
+          </mat-card>
+    </div>
+  </div>
+    
+      <app-new-list></app-new-list>
+</div>
