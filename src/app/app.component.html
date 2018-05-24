@@ -1,5 +1,24 @@
 <mat-toolbar color="primary">
     <span>What to do When</span>
+
+    <nav>
+        <a mat-button routerLink='lists'>Lists</a>
+        <a mat-button routerLink='profile'>Profile</a>
+    </nav>
+
+    <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <div *ngIf='auth.user | async; then authenticated else guest'></div>
+    <ng-template #guest>
+        <button mat-button (click)='auth.googleLogin()'>Login</button>
+      </ng-template>
+      
+      <ng-template #authenticated>
+          <ng-container *ngIf='auth.user | async as user'>
+            <button mat-button (click)='auth.logout()'>Logout</button>
+            </ng-container>
+      </ng-template>
   </mat-toolbar>
 
   <router-outlet></router-outlet>

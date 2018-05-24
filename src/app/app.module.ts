@@ -30,6 +30,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 export const routes: Routes = [
   { path: '', component: UserProfileComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: 'lists', component: ListsComponent }
 ];
 
