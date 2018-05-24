@@ -5,6 +5,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection
 } from 'angularfire2/firestore';
+import { AuthService, User } from './../core/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,18 @@ import {
 export class ListService {
   lists: AngularFirestoreCollection<List>;
   private listDoc: AngularFirestoreDocument<List>;
+  user: User;
 
-  constructor(private db: AngularFirestore) {
-    this.lists = db.collection<List>('lists');
+  constructor(private db: AngularFirestore, private auth: AuthService) {
+    auth.user.subscribe(user => {
+      this.user = user;
+      this.lists = db.collection<List>('lists', ref => ref.where('user', '==', user.uid));
+    });
  }
 
  addList(task) {
-  this.lists.add(task);
+    task.user = this.user.uid;
+    this.lists.add(task);
 }
 
 updateList(task) {

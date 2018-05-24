@@ -9,7 +9,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class TasksService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore) {
+   }
 
   getTasksFromAfs(listId): Observable<any> {
     return this.db.collection('tasks', ref => ref.where('list', '==', listId)).snapshotChanges().map(actions => {

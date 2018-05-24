@@ -5,20 +5,26 @@ import {
   AngularFirestore,
   AngularFirestoreCollection
 } from 'angularfire2/firestore';
+import { AuthService, User } from './../core/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
   tasks: AngularFirestoreCollection<Task>;
+  user: User;
   private taskDoc: AngularFirestoreDocument<Task>;
 
-  constructor(private db: AngularFirestore) {
-    this.tasks = db.collection<Task>('tasks');
+  constructor(private db: AngularFirestore, private auth: AuthService) {
+    auth.user.subscribe(user => {
+      this.user = user;
+      this.tasks = db.collection<Task>('tasks', ref => ref.where('user', '==', user.uid));
+    });
  }
 
  addTask(task) {
-  this.tasks.add(task);
+    task.user = this.user.uid;
+    this.tasks.add(task);
 }
 
 updateTask(task) {

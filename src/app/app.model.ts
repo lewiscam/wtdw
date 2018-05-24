@@ -10,5 +10,4 @@ export interface List {
     name: string;
     activeDate?: Date;
     active: boolean;
-    tasks?: Task[];
 }

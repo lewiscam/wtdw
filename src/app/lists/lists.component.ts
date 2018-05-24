@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/Observable/forkJoin';
 import { List } from './../app.model';
 import { ListsService } from './lists.service';
+import { AuthService } from './../core/auth.service';
 
 @Component({
   selector: 'app-lists',
@@ -12,12 +14,14 @@ import { ListsService } from './lists.service';
 export class ListsComponent implements OnInit {
   lists: List[] = [];
 
-  constructor(private listsService: ListsService) { }
+  constructor(private listsService: ListsService, private auth: AuthService) { }
 
   ngOnInit() {
-    this.listsService.getListsFromAfs().subscribe(data => {
-      this.lists.length = 0;
-      this.lists.push(...data);
+    this.auth.user.subscribe(user => {
+      this.listsService.getListsFromAfs(user).subscribe(data => {
+        this.lists.length = 0;
+        this.lists.push(...data);
+      });
     });
   }
 

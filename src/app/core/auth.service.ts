@@ -8,7 +8,7 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 
-interface User {
+export interface User {
   uid: string;
   email: string;
   photoUrl?: string;
